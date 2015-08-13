@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     public GameObject playerPrefab;
+    public Text continueText;
 
+    private float blinkTime = 0f;
+    private bool blink;
     private bool gameStarted;
     private TimeManager timeManager;
     private GameObject player;
@@ -26,6 +30,8 @@ public class GameManager : MonoBehaviour {
         spawner.active = false;
 
         Time.timeScale = 0;
+
+        continueText.text = "Press Any Button to Start";
 	}
 	
 	// Update is called once per frame
@@ -35,6 +41,15 @@ public class GameManager : MonoBehaviour {
                 timeManager.ManipulateTime(1, 1f);
                 ResetGame();
             }
+        }
+
+        if (!gameStarted) {
+            blinkTime++;
+
+            if (blinkTime % 40 == 0) {
+                blink = !blink;
+            }
+            continueText.canvasRenderer.SetAlpha(blink ? 0 : 1);
         }
 	}
 
@@ -47,6 +62,8 @@ public class GameManager : MonoBehaviour {
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         timeManager.ManipulateTime(0, 5.5f);
         gameStarted = false;
+
+        continueText.text = "PRESS ANY BUTTON TO RESTART";
     }
 
     void ResetGame() {
@@ -56,5 +73,9 @@ public class GameManager : MonoBehaviour {
         var playerDestroyScript = player.GetComponent<DestroyOffscreen>();
         playerDestroyScript.DestroyCallback += onPlayerKill;
         gameStarted = true;
+
+        continueText.canvasRenderer.SetAlpha(0);
+
+
     }
 }
