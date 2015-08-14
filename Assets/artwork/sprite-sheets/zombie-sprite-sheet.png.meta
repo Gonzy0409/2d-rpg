@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: e2c5e2bc6f4d999479b26b22339c34c9
-timeCreated: 1439231043
-licenseType: Free
+timeCreated: 1439510069
+licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
     21300000: zombie-sprite-sheet_0
@@ -62,8 +62,8 @@ TextureImporter:
         y: 92
         width: 34
         height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: zombie-sprite-sheet_1
       rect:
@@ -72,8 +72,8 @@ TextureImporter:
         y: 92
         width: 34
         height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: zombie-sprite-sheet_2
       rect:
@@ -82,8 +82,8 @@ TextureImporter:
         y: 92
         width: 34
         height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: zombie-sprite-sheet_3
       rect:
@@ -92,8 +92,8 @@ TextureImporter:
         y: 56
         width: 34
         height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: zombie-sprite-sheet_4
       rect:
@@ -102,8 +102,8 @@ TextureImporter:
         y: 56
         width: 34
         height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: zombie-sprite-sheet_5
       rect:
@@ -112,8 +112,8 @@ TextureImporter:
         y: 56
         width: 34
         height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: .5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class GameManager : MonoBehaviour {
     public GameObject playerPrefab;
     public Text continueText;
+    public Text scoreText;
 
+    private float timeElapsed = 0f;
+    private float bestTime = 0f;
     private float blinkTime = 0f;
     private bool blink;
     private bool gameStarted;
@@ -13,6 +17,7 @@ public class GameManager : MonoBehaviour {
     private GameObject player;
     private GameObject floor;
     private Spawner spawner;
+    private bool beatBestTime;
 
     void Awake() {
         floor = GameObject.Find("foreground");
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 0;
 
         continueText.text = "Press Any Button to Start";
+        bestTime = PlayerPrefs.GetFloat("BestTime");
 	}
 	
 	// Update is called once per frame
@@ -50,6 +56,14 @@ public class GameManager : MonoBehaviour {
                 blink = !blink;
             }
             continueText.canvasRenderer.SetAlpha(blink ? 0 : 1);
+
+            var textColor = beatBestTime ? "#FF0" : "#FFF";
+            scoreText.text = "TIME: " + FormatTime(timeElapsed) + "\n<color=" + textColor + ">BEST: " + FormatTime(bestTime) + "</color>";
+        }
+        else
+        {
+            timeElapsed += Time.deltaTime;
+            scoreText.text = "TIME: " + FormatTime(timeElapsed);
         }
 	}
 
@@ -64,6 +78,13 @@ public class GameManager : MonoBehaviour {
         gameStarted = false;
 
         continueText.text = "PRESS ANY BUTTON TO RESTART";
+
+        if (timeElapsed > bestTime)
+        {
+            bestTime = timeElapsed;
+            PlayerPrefs.SetFloat("BestTime", bestTime);
+            beatBestTime = true;
+        }
     }
 
     void ResetGame() {
@@ -76,6 +97,14 @@ public class GameManager : MonoBehaviour {
 
         continueText.canvasRenderer.SetAlpha(0);
 
+        timeElapsed = 0;
+        beatBestTime = false;
+    }
 
+    string FormatTime(float value)
+    {
+        TimeSpan t = TimeSpan.FromSeconds(value);
+
+        return string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
     }
 }
